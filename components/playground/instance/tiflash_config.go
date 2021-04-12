@@ -34,7 +34,7 @@ runAsDaemon = true
 
 [flash]
 service_addr = "%[10]s:%[8]d"
-tidb_status_addr = "%[11]s"
+he3db_status_addr = "%[11]s"
 [flash.flash_cluster]
 cluster_manager_path = "%[12]s"
 log = "%[7]s/tiflash_cluster_manager.log"

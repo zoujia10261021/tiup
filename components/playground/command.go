@@ -54,7 +54,7 @@ func buildCommands(tp CommandType, opt *bootOptions) (cmds []Command) {
 		{"tikv", opt.tikv},
 		{"pump", opt.pump},
 		{"tiflash", opt.tiflash},
-		{"tidb", opt.tidb},
+		{"he3db", opt.tidb},
 		{"ticdc", opt.ticdc},
 		{"drainer", opt.drainer},
 	}
@@ -93,7 +93,7 @@ func newScaleOut() *cobra.Command {
 		Hidden: false,
 	}
 
-	cmd.Flags().IntVarP(&opt.tidb.Num, "db", "", opt.tidb.Num, "TiDB instance number")
+	cmd.Flags().IntVarP(&opt.tidb.Num, "db", "", opt.tidb.Num, "He3DB instance number")
 	cmd.Flags().IntVarP(&opt.tikv.Num, "kv", "", opt.tikv.Num, "TiKV instance number")
 	cmd.Flags().IntVarP(&opt.pd.Num, "pd", "", opt.pd.Num, "PD instance number")
 	cmd.Flags().IntVarP(&opt.tiflash.Num, "tiflash", "", opt.tiflash.Num, "TiFlash instance number")
@@ -101,17 +101,17 @@ func newScaleOut() *cobra.Command {
 	cmd.Flags().IntVarP(&opt.pump.Num, "pump", "", opt.pump.Num, "Pump instance number")
 	cmd.Flags().IntVarP(&opt.drainer.Num, "drainer", "", opt.pump.Num, "Drainer instance number")
 
-	cmd.Flags().StringVarP(&opt.tidb.Host, "db.host", "", opt.tidb.Host, "Playground TiDB host. If not provided, TiDB will still use `host` flag as its host")
+	cmd.Flags().StringVarP(&opt.tidb.Host, "db.host", "", opt.tidb.Host, "Playground He3DB host. If not provided, He3DB will still use `host` flag as its host")
 	cmd.Flags().StringVarP(&opt.pd.Host, "pd.host", "", opt.pd.Host, "Playground PD host. If not provided, PD will still use `host` flag as its host")
 
-	cmd.Flags().StringVarP(&opt.tidb.ConfigPath, "db.config", "", opt.tidb.ConfigPath, "TiDB instance configuration file")
+	cmd.Flags().StringVarP(&opt.tidb.ConfigPath, "db.config", "", opt.tidb.ConfigPath, "He3DB instance configuration file")
 	cmd.Flags().StringVarP(&opt.tikv.ConfigPath, "kv.config", "", opt.tikv.ConfigPath, "TiKV instance configuration file")
 	cmd.Flags().StringVarP(&opt.pd.ConfigPath, "pd.config", "", opt.pd.ConfigPath, "PD instance configuration file")
 	cmd.Flags().StringVarP(&opt.tidb.ConfigPath, "tiflash.config", "", opt.tidb.ConfigPath, "TiFlash instance configuration file")
 	cmd.Flags().StringVarP(&opt.pump.ConfigPath, "pump.config", "", opt.pump.ConfigPath, "Pump instance configuration file")
 	cmd.Flags().StringVarP(&opt.drainer.ConfigPath, "drainer.config", "", opt.drainer.ConfigPath, "Drainer instance configuration file")
 
-	cmd.Flags().StringVarP(&opt.tidb.BinPath, "db.binpath", "", opt.tidb.BinPath, "TiDB instance binary path")
+	cmd.Flags().StringVarP(&opt.tidb.BinPath, "db.binpath", "", opt.tidb.BinPath, "He3DB instance binary path")
 	cmd.Flags().StringVarP(&opt.tikv.BinPath, "kv.binpath", "", opt.tikv.BinPath, "TiKV instance binary path")
 	cmd.Flags().StringVarP(&opt.pd.BinPath, "pd.binpath", "", opt.pd.BinPath, "PD instance binary path")
 	cmd.Flags().StringVarP(&opt.tiflash.BinPath, "tiflash.binpath", "", opt.tiflash.BinPath, "TiFlash instance binary path")

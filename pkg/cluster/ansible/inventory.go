@@ -35,7 +35,7 @@ var (
 	// AnsibleConfigFile is the default ansible config file name
 	AnsibleConfigFile = "ansible.cfg"
 	groupVarsGlobal   = "group_vars/all.yml"
-	groupVarsTiDB     = "group_vars/tidb_servers.yml"
+	groupVarsTiDB     = "group_vars/he3db_servers.yml"
 	groupVarsTiKV     = "group_vars/tikv_servers.yml"
 	groupVarsPD       = "group_vars/pd_servers.yml"
 	groupVarsTiFlash  = "group_vars/tiflash_servers.yml"
@@ -163,7 +163,7 @@ func parseGroupVars(dir, ansCfgFile string, clsMeta *spec.ClusterMeta, inv *aini
 
 	// set hosts
 	// tidb_servers
-	if grp, ok := inv.Groups["tidb_servers"]; ok && len(grp.Hosts) > 0 {
+	if grp, ok := inv.Groups["he3db_servers"]; ok && len(grp.Hosts) > 0 {
 		grpVars, err := readGroupVars(dir, groupVarsTiDB)
 		if err != nil {
 			return err
@@ -179,21 +179,21 @@ func parseGroupVars(dir, ansCfgFile string, clsMeta *spec.ClusterMeta, inv *aini
 				Imported: true,
 			}
 
-			if port, ok := grpVars["tidb_port"]; ok {
+			if port, ok := grpVars["he3db_port"]; ok {
 				tmpIns.Port, _ = strconv.Atoi(port)
 			}
-			if statusPort, ok := grpVars["tidb_status_port"]; ok {
+			if statusPort, ok := grpVars["he3db_status_port"]; ok {
 				tmpIns.StatusPort, _ = strconv.Atoi(statusPort)
 			}
 
 			// apply values from the host
-			if port, ok := srv.Vars["tidb_port"]; ok {
+			if port, ok := srv.Vars["he3db_port"]; ok {
 				tmpIns.Port, _ = strconv.Atoi(port)
 			}
-			if statusPort, ok := srv.Vars["tidb_status_port"]; ok {
+			if statusPort, ok := srv.Vars["he3db_status_port"]; ok {
 				tmpIns.StatusPort, _ = strconv.Atoi(statusPort)
 			}
-			if logDir, ok := srv.Vars["tidb_log_dir"]; ok {
+			if logDir, ok := srv.Vars["he3db_log_dir"]; ok {
 				tmpIns.LogDir = strings.Trim(logDir, "\"")
 			}
 
@@ -201,7 +201,7 @@ func parseGroupVars(dir, ansCfgFile string, clsMeta *spec.ClusterMeta, inv *aini
 
 			clsMeta.Topology.TiDBServers = append(clsMeta.Topology.TiDBServers, tmpIns)
 		}
-		log.Infof("Imported %d TiDB node(s).", len(clsMeta.Topology.TiDBServers))
+		log.Infof("Imported %d He3DB node(s).", len(clsMeta.Topology.TiDBServers))
 	}
 
 	// tikv_servers

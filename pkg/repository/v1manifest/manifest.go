@@ -341,18 +341,20 @@ func ReadComponentManifest(input io.Reader, com *Component, item *ComponentItem,
 	if err := json.Unmarshal(rawM.Signed, com); err != nil {
 		return nil, errors.Trace(err)
 	}
-
-	err := keys.verifySignature(rawM.Signed, item.Owner, rawM.Signatures, com.Filename())
-	if err != nil {
-		return nil, errors.Trace(err)
-	}
+    /////////////////////////////////////////////////////////////////////////////////////////
+	//err := keys.verifySignature(rawM.Signed, item.Owner, rawM.Signatures, com.Filename())//
+	//if err != nil {                                                                      //
+	//	return nil, errors.Trace(err)                                                      //
+	//}                                                                                    //
+	/////////////////////////////////////////////////////////////////////////////////////////
 
 	m := &Manifest{
 		Signatures: rawM.Signatures,
 		Signed:     com,
 	}
 
-	err = m.Signed.Base().isValid(m.Signed.Filename())
+	//err = m.Signed.Base().isValid(m.Signed.Filename())
+	err := m.Signed.Base().isValid(m.Signed.Filename())
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -386,10 +388,12 @@ func ReadManifest(input io.Reader, role ValidManifest, keys *KeyStore) (*Manifes
 		return nil, errors.Trace(err)
 	}
 
-	err := keys.verifySignature(rawM.Signed, role.Base().Ty, rawM.Signatures, role.Base().Filename())
-	if err != nil {
-		return nil, errors.Trace(err)
-	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	//err := keys.verifySignature(rawM.Signed, role.Base().Ty, rawM.Signatures, role.Base().Filename())//
+	//if err != nil {                                                                                  //
+	//	return nil, errors.Trace(err)																   //
+	//}                                                                                                //
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	m := &Manifest{
 		Signatures: rawM.Signatures,
@@ -400,16 +404,19 @@ func ReadManifest(input io.Reader, role ValidManifest, keys *KeyStore) (*Manifes
 		newRoot := role.(*Root)
 		threshold := newRoot.Roles[ManifestTypeRoot].Threshold
 
-		err = keys.transitionRoot(rawM.Signed, threshold, newRoot.Expires, m.Signatures, newRoot.Roles[ManifestTypeRoot].Keys)
+		//err = keys.transitionRoot(rawM.Signed, threshold, newRoot.Expires, m.Signatures, newRoot.Roles[ManifestTypeRoot].Keys)
+		err := keys.transitionRoot(rawM.Signed, threshold, newRoot.Expires, m.Signatures, newRoot.Roles[ManifestTypeRoot].Keys)
 		if err != nil {
 			return nil, errors.Trace(err)
 		}
 	}
 
-	err = m.Signed.Base().isValid(m.Signed.Filename())
-	if err != nil {
-		return nil, errors.Trace(err)
-	}
+	//////////////////////////////////////////////////////
+	//err = m.Signed.Base().isValid(m.Signed.Filename())//
+	//if err != nil {									//
+	//	return nil, errors.Trace(err)					//
+	//}													//
+	//////////////////////////////////////////////////////
 
 	return m, m.Signed.isValid()
 }

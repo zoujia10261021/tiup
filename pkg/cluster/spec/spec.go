@@ -41,7 +41,7 @@ var (
 	RoleMonitor       = "monitor"
 	RoleTiSparkMaster = "tispark-master"
 	RoleTiSparkWorker = "tispark-worker"
-	TopoTypeTiDB      = "tidb-cluster"
+	TopoTypeTiDB      = "he3db-cluster"
 	TopoTypeDM        = "dm-cluster"
 )
 
@@ -57,7 +57,7 @@ type (
 	// GlobalOptions represents the global options for all groups in topology
 	// specification in topology.yaml
 	GlobalOptions struct {
-		User            string               `yaml:"user,omitempty" default:"tidb"`
+		User            string               `yaml:"user,omitempty" default:"he3db"`
 		Group           string               `yaml:"group,omitempty"`
 		SSHPort         int                  `yaml:"ssh_port,omitempty" default:"22" validate:"ssh_port:editable"`
 		SSHType         executor.SSHType     `yaml:"ssh_type,omitempty" default:"builtin"`
@@ -83,7 +83,7 @@ type (
 
 	// ServerConfigs represents the server runtime configuration
 	ServerConfigs struct {
-		TiDB           map[string]interface{} `yaml:"tidb"`
+		TiDB           map[string]interface{} `yaml:"he3db"`
 		TiKV           map[string]interface{} `yaml:"tikv"`
 		PD             map[string]interface{} `yaml:"pd"`
 		TiFlash        map[string]interface{} `yaml:"tiflash"`
@@ -98,7 +98,7 @@ type (
 		GlobalOptions    GlobalOptions       `yaml:"global,omitempty" validate:"global:editable"`
 		MonitoredOptions MonitoredOptions    `yaml:"monitored,omitempty" validate:"monitored:editable"`
 		ServerConfigs    ServerConfigs       `yaml:"server_configs,omitempty" validate:"server_configs:ignore"`
-		TiDBServers      []TiDBSpec          `yaml:"tidb_servers"`
+		TiDBServers      []TiDBSpec          `yaml:"he3db_servers"`
 		TiKVServers      []TiKVSpec          `yaml:"tikv_servers"`
 		TiFlashServers   []TiFlashSpec       `yaml:"tiflash_servers"`
 		PDServers        []PDSpec            `yaml:"pd_servers"`

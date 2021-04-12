@@ -38,7 +38,7 @@ func newImportCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "import",
-		Short: "Import an exist TiDB cluster from TiDB-Ansible",
+		Short: "Import an exist He3DB cluster from He3DB-Ansible",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			// Use current directory as ansibleDir by default
 			if ansibleDir == "" {
@@ -83,7 +83,7 @@ func newImportCmd() *cobra.Command {
 				log.Infof("The '--no-backup' flag is set, the ansible directory will be kept at its current location.")
 				prompt = fmt.Sprintf("The inventory file will be renamed to %s after import.", backupFile)
 			}
-			log.Warnf("TiDB-Ansible and TiUP Cluster can NOT be used together, please DO NOT try to use ansible to manage the imported cluster anymore to avoid metadata conflict.")
+			log.Warnf("He3DB-Ansible and TiUP Cluster can NOT be used together, please DO NOT try to use ansible to manage the imported cluster anymore to avoid metadata conflict.")
 			log.Infof(prompt)
 			if !skipConfirm {
 				err = cliutil.PromptForConfirmOrAbortError("Do you want to continue? [y/N]: ")
@@ -94,7 +94,7 @@ func newImportCmd() *cobra.Command {
 
 			if !skipConfirm {
 				err = cliutil.PromptForConfirmOrAbortError(
-					"Prepared to import TiDB %s cluster %s.\nDo you want to continue? [y/N]:",
+					"Prepared to import He3DB %s cluster %s.\nDo you want to continue? [y/N]:",
 					clsMeta.Version,
 					clsName)
 				if err != nil {
@@ -158,7 +158,7 @@ func newImportCmd() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&ansibleDir, "dir", "d", "", "The path to TiDB-Ansible directory")
+	cmd.Flags().StringVarP(&ansibleDir, "dir", "d", "", "The path to He3DB-Ansible directory")
 	cmd.Flags().StringVar(&inventoryFileName, "inventory", ansible.AnsibleInventoryFile, "The name of inventory file")
 	cmd.Flags().StringVar(&ansibleCfgFile, "ansible-config", ansible.AnsibleConfigFile, "The path to ansible.cfg")
 	cmd.Flags().StringVarP(&rename, "rename", "r", "", "Rename the imported cluster to `NAME`")

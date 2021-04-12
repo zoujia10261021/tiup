@@ -43,7 +43,7 @@ func init() {
 		Use: `tiup [flags] <command> [args...]
   tiup [flags] <component> [args...]`,
 		Long: `TiUP is a command-line component management tool that can help to download and install
-TiDB platform components to the local system. You can run a specific version of a component via
+He3DB platform components to the local system. You can run a specific version of a component via
 "tiup <component>[:version]". If no version number is specified, the latest version installed
 locally will be used. If the specified component does not have any version installed locally,
 the latest stable version will be downloaded from the repository.`,

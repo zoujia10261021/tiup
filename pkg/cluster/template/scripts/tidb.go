@@ -96,7 +96,7 @@ func (c *TiDBScript) ConfigToFile(file string) error {
 
 // ConfigWithTemplate generate the TiDB config content by tpl
 func (c *TiDBScript) ConfigWithTemplate(tpl string) ([]byte, error) {
-	tmpl, err := template.New("TiDB").Parse(tpl)
+	tmpl, err := template.New("He3DB").Parse(tpl)
 	if err != nil {
 		return nil, err
 	}

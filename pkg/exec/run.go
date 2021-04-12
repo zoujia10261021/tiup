@@ -95,7 +95,7 @@ func RunComponent(env *environment.Environment, tag, spec, binPath string, args 
 	case s := <-sc:
 		sig = s.(syscall.Signal)
 		fmt.Printf("Got signal %v (Component: %v ; PID: %v)\n", s, component, p.Pid)
-		if component == "tidb" {
+		if component == "he3db" {
 			return syscall.Kill(p.Pid, syscall.SIGKILL)
 		}
 		if sig != syscall.SIGINT {

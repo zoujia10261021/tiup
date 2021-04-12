@@ -32,7 +32,7 @@ func execute() error {
 
 	rootCmd := &cobra.Command{
 		Use:          "tiup doc",
-		Short:        "TiDB document summary page",
+		Short:        "He3DB document summary page",
 		SilenceUsage: true,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			var url string

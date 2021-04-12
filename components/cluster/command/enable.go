@@ -20,7 +20,7 @@ import (
 func newEnableCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "enable <cluster-name>",
-		Short: "Enable a TiDB cluster automatically at boot",
+		Short: "Enable a He3DB cluster automatically at boot",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 1 {
 				return cmd.Help()

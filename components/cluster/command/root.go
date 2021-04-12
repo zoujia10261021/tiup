@@ -86,7 +86,7 @@ func init() {
 
 	rootCmd = &cobra.Command{
 		Use:           cliutil.OsArgs0(),
-		Short:         "Deploy a TiDB cluster for production",
+		Short:         "Deploy a He3DB cluster for production",
 		SilenceUsage:  true,
 		SilenceErrors: true,
 		Version:       version.NewTiUPVersion().String(),
@@ -98,7 +98,7 @@ func init() {
 			}
 
 			tidbSpec = spec.GetSpecManager()
-			cm = manager.NewManager("tidb", tidbSpec, spec.TiDBComponentVersion)
+			cm = manager.NewManager("he3db", tidbSpec, spec.TiDBComponentVersion)
 			logger.EnableAuditLog(spec.AuditDir())
 
 			// Running in other OS/ARCH Should be fine we only download manifest file.

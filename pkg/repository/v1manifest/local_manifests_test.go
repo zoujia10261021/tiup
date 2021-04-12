@@ -70,10 +70,10 @@ func TestPollutedManifest(t *testing.T) {
 	assert.Nil(t, err)
 	assert.False(t, exist)
 
-	filename := ComponentManifestFilename("tidb")
+	filename := ComponentManifestFilename("he3db")
 	tidb, err := manifest.LoadComponentManifest(&ComponentItem{
-		Owner: "pingcap",
-		URL:   "/tidb.json",
+		Owner: "suyan",
+		URL:   "/he3db.json",
 	}, filename)
 	assert.NotNil(t, err) // Because index.json not load successfully
 	assert.Nil(t, tidb)

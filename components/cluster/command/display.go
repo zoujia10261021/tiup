@@ -36,7 +36,7 @@ func newDisplayCmd() *cobra.Command {
 	)
 	cmd := &cobra.Command{
 		Use:   "display <cluster-name>",
-		Short: "Display information of a TiDB cluster",
+		Short: "Display information of a He3DB cluster",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 1 {
 				return cmd.Help()
@@ -73,7 +73,7 @@ func newDisplayCmd() *cobra.Command {
 
 	cmd.Flags().StringSliceVarP(&gOpt.Roles, "role", "R", nil, "Only display specified roles")
 	cmd.Flags().StringSliceVarP(&gOpt.Nodes, "node", "N", nil, "Only display specified nodes")
-	cmd.Flags().BoolVar(&showDashboardOnly, "dashboard", false, "Only display TiDB Dashboard information")
+	cmd.Flags().BoolVar(&showDashboardOnly, "dashboard", false, "Only display He3DB Dashboard information")
 
 	return cmd
 }
@@ -93,17 +93,17 @@ func displayDashboardInfo(clusterName string, tlsCfg *tls.Config) error {
 	pdAPI := api.NewPDClient(pdEndpoints, 2*time.Second, tlsCfg)
 	dashboardAddr, err := pdAPI.GetDashboardAddress()
 	if err != nil {
-		return fmt.Errorf("failed to retrieve TiDB Dashboard instance from PD: %s", err)
+		return fmt.Errorf("failed to retrieve He3DB Dashboard instance from PD: %s", err)
 	}
 	if dashboardAddr == "auto" {
-		return fmt.Errorf("TiDB Dashboard is not initialized, please start PD and try again")
+		return fmt.Errorf("He3DB Dashboard is not initialized, please start PD and try again")
 	} else if dashboardAddr == "none" {
-		return fmt.Errorf("TiDB Dashboard is disabled")
+		return fmt.Errorf("He3DB Dashboard is disabled")
 	}
 
 	u, err := url.Parse(dashboardAddr)
 	if err != nil {
-		return fmt.Errorf("unknown TiDB Dashboard PD instance: %s", dashboardAddr)
+		return fmt.Errorf("unknown He3DB Dashboard PD instance: %s", dashboardAddr)
 	}
 
 	u.Path = "/dashboard/"

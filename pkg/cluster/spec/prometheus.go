@@ -178,7 +178,7 @@ func (i *MonitorInstance) InitConfig(
 			cfig.AddTiKV(kv.Host, uint64(kv.StatusPort))
 		}
 	}
-	if servers, found := topoHasField("TiDBServers"); found {
+	if servers, found := topoHasField("He3DBServers"); found {
 		for i := 0; i < servers.Len(); i++ {
 			db := servers.Index(i).Interface().(TiDBSpec)
 			uniqueHosts.Insert(db.Host)

@@ -27,7 +27,7 @@ import (
 )
 
 var (
-	defaultDeployUser = "tidb"
+	defaultDeployUser = "he3db"
 	errNSTopolohy     = errorx.NewNamespace("topology")
 	// ErrTopologyReadFailed is ErrTopologyReadFailed
 	ErrTopologyReadFailed = errNSTopolohy.NewType("read_failed", errutil.ErrTraitPreCheck)

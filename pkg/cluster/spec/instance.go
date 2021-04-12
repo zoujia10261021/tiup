@@ -34,7 +34,7 @@ import (
 
 // Components names
 const (
-	ComponentTiDB             = "tidb"
+	ComponentTiDB             = "he3db"
 	ComponentTiKV             = "tikv"
 	ComponentPD               = "pd"
 	ComponentTiFlash          = "tiflash"

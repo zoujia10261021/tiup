@@ -98,15 +98,15 @@ func execute() error {
 
 	rootCmd := &cobra.Command{
 		Use: "tiup playground [version]",
-		Long: `Bootstrap a TiDB cluster in your local host, the latest release version will be chosen
+		Long: `Bootstrap a He3DB cluster in your local host, the latest release version will be chosen
 if you don't specified a version.
 
 Examples:
-  $ tiup playground nightly                         # Start a TiDB nightly version local cluster
+  $ tiup playground nightly                         # Start a He3DB nightly version local cluster
   $ tiup playground v3.0.10 --db 3 --pd 3 --kv 3    # Start a local cluster with 10 nodes
   $ tiup playground nightly --monitor=false         # Start a local cluster and disable monitor system
   $ tiup playground --pd.config ~/config/pd.toml    # Start a local cluster with specified configuration file,
-  $ tiup playground --db.binpath /xx/tidb-server    # Start a local cluster with component binary path`,
+  $ tiup playground --db.binpath /xx/he3db-server    # Start a local cluster with component binary path`,
 		SilenceUsage:  true,
 		SilenceErrors: true,
 		Args: func(cmd *cobra.Command, args []string) error {
@@ -196,7 +196,7 @@ Examples:
 		},
 	}
 
-	rootCmd.Flags().IntVarP(&opt.tidb.Num, "db", "", opt.tidb.Num, "TiDB instance number")
+	rootCmd.Flags().IntVarP(&opt.tidb.Num, "db", "", opt.tidb.Num, "He3DB instance number")
 	rootCmd.Flags().IntVarP(&opt.tikv.Num, "kv", "", opt.tikv.Num, "TiKV instance number")
 	rootCmd.Flags().IntVarP(&opt.pd.Num, "pd", "", opt.pd.Num, "PD instance number")
 	rootCmd.Flags().IntVarP(&opt.tiflash.Num, "tiflash", "", opt.tiflash.Num, "TiFlash instance number")
@@ -204,22 +204,22 @@ Examples:
 	rootCmd.Flags().IntVarP(&opt.pump.Num, "pump", "", opt.pump.Num, "Pump instance number")
 	rootCmd.Flags().IntVarP(&opt.drainer.Num, "drainer", "", opt.drainer.Num, "Drainer instance number")
 
-	rootCmd.Flags().IntVarP(&opt.tidb.UpTimeout, "db.timeout", "", opt.tidb.UpTimeout, "TiDB max wait time in seconds for starting, 0 means no limit")
+	rootCmd.Flags().IntVarP(&opt.tidb.UpTimeout, "db.timeout", "", opt.tidb.UpTimeout, "He3DB max wait time in seconds for starting, 0 means no limit")
 	rootCmd.Flags().IntVarP(&opt.tiflash.UpTimeout, "tiflash.timeout", "", opt.tiflash.UpTimeout, "TiFlash max wait time in seconds for starting, 0 means no limit")
 
 	rootCmd.Flags().StringVarP(&opt.host, "host", "", opt.host, "Playground cluster host")
-	rootCmd.Flags().StringVarP(&opt.tidb.Host, "db.host", "", opt.tidb.Host, "Playground TiDB host. If not provided, TiDB will still use `host` flag as its host")
+	rootCmd.Flags().StringVarP(&opt.tidb.Host, "db.host", "", opt.tidb.Host, "Playground He3DB host. If not provided, He3DB will still use `host` flag as its host")
 	rootCmd.Flags().StringVarP(&opt.pd.Host, "pd.host", "", opt.pd.Host, "Playground PD host. If not provided, PD will still use `host` flag as its host")
 	rootCmd.Flags().BoolVar(&opt.monitor, "monitor", opt.monitor, "Start prometheus and grafana component")
 
-	rootCmd.Flags().StringVarP(&opt.tidb.ConfigPath, "db.config", "", opt.tidb.ConfigPath, "TiDB instance configuration file")
+	rootCmd.Flags().StringVarP(&opt.tidb.ConfigPath, "db.config", "", opt.tidb.ConfigPath, "He3DB instance configuration file")
 	rootCmd.Flags().StringVarP(&opt.tikv.ConfigPath, "kv.config", "", opt.tikv.ConfigPath, "TiKV instance configuration file")
 	rootCmd.Flags().StringVarP(&opt.pd.ConfigPath, "pd.config", "", opt.pd.ConfigPath, "PD instance configuration file")
 	rootCmd.Flags().StringVarP(&opt.tidb.ConfigPath, "tiflash.config", "", opt.tidb.ConfigPath, "TiFlash instance configuration file")
 	rootCmd.Flags().StringVarP(&opt.pump.ConfigPath, "pump.config", "", opt.pump.ConfigPath, "Pump instance configuration file")
 	rootCmd.Flags().StringVarP(&opt.drainer.ConfigPath, "drainer.config", "", opt.drainer.ConfigPath, "Drainer instance configuration file")
 
-	rootCmd.Flags().StringVarP(&opt.tidb.BinPath, "db.binpath", "", opt.tidb.BinPath, "TiDB instance binary path")
+	rootCmd.Flags().StringVarP(&opt.tidb.BinPath, "db.binpath", "", opt.tidb.BinPath, "He3DB instance binary path")
 	rootCmd.Flags().StringVarP(&opt.tikv.BinPath, "kv.binpath", "", opt.tikv.BinPath, "TiKV instance binary path")
 	rootCmd.Flags().StringVarP(&opt.pd.BinPath, "pd.binpath", "", opt.pd.BinPath, "PD instance binary path")
 	rootCmd.Flags().StringVarP(&opt.tiflash.BinPath, "tiflash.binpath", "", opt.tiflash.BinPath, "TiFlash instance binary path")

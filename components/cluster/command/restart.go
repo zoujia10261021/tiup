@@ -20,7 +20,7 @@ import (
 func newRestartCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "restart <cluster-name>",
-		Short: "Restart a TiDB cluster",
+		Short: "Restart a He3DB cluster",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 1 {
 				return cmd.Help()

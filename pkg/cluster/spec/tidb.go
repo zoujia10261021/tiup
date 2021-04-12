@@ -141,7 +141,7 @@ func (i *TiDBInstance) InitConfig(
 		return err
 	}
 
-	dst := filepath.Join(paths.Deploy, "scripts", "run_tidb.sh")
+	dst := filepath.Join(paths.Deploy, "scripts", "run_he3db.sh")
 	if err := e.Transfer(fp, dst, false); err != nil {
 		return err
 	}

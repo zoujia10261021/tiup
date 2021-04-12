@@ -59,7 +59,7 @@ func (inst *TiDBInstance) Start(ctx context.Context, version pkgver.Version) err
 		fmt.Sprintf("--host=%s", inst.Host),
 		fmt.Sprintf("--status=%d", inst.StatusPort),
 		fmt.Sprintf("--path=%s", strings.Join(endpoints, ",")),
-		fmt.Sprintf("--log-file=%s", filepath.Join(inst.Dir, "tidb.log")),
+		fmt.Sprintf("--log-file=%s", filepath.Join(inst.Dir, "he3db.log")),
 	}
 	if inst.ConfigPath != "" {
 		args = append(args, fmt.Sprintf("--config=%s", inst.ConfigPath))
@@ -69,7 +69,7 @@ func (inst *TiDBInstance) Start(ctx context.Context, version pkgver.Version) err
 	}
 
 	var err error
-	if inst.Process, err = NewComponentProcess(ctx, inst.Dir, inst.BinPath, "tidb", version, args...); err != nil {
+	if inst.Process, err = NewComponentProcess(ctx, inst.Dir, inst.BinPath, "he3db", version, args...); err != nil {
 		return err
 	}
 	logIfErr(inst.Process.SetOutputFile(inst.LogFile()))
@@ -79,12 +79,12 @@ func (inst *TiDBInstance) Start(ctx context.Context, version pkgver.Version) err
 
 // Component return the component name.
 func (inst *TiDBInstance) Component() string {
-	return "tidb"
+	return "he3db"
 }
 
 // LogFile return the log file name.
 func (inst *TiDBInstance) LogFile() string {
-	return filepath.Join(inst.Dir, "tidb.log")
+	return filepath.Join(inst.Dir, "he3db.log")
 }
 
 // Addr return the listen address of TiDB

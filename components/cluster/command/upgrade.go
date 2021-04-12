@@ -21,7 +21,7 @@ import (
 func newUpgradeCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "upgrade <cluster-name> <version>",
-		Short: "Upgrade a specified TiDB cluster",
+		Short: "Upgrade a specified He3DB cluster",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 2 {
 				return cmd.Help()

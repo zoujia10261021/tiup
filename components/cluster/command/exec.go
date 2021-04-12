@@ -22,7 +22,7 @@ func newExecCmd() *cobra.Command {
 	opt := manager.ExecOptions{}
 	cmd := &cobra.Command{
 		Use:   "exec <cluster-name>",
-		Short: "Run shell command on host in the tidb cluster",
+		Short: "Run shell command on host in the he3db cluster",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 1 {
 				return cmd.Help()

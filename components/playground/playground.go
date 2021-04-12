@@ -291,7 +291,7 @@ func (p *Playground) handleScaleIn(w io.Writer, pid int) error {
 				return nil
 			}
 		}
-	case "tidb":
+	case "he3db":
 		for i := 0; i < len(p.tidbs); i++ {
 			if p.tidbs[i].Pid() == pid {
 				p.tidbs = append(p.tidbs[:i], p.tidbs[i+1:]...)
@@ -397,7 +397,7 @@ func (p *Playground) sanitizeComponentConfig(cid string, cfg *instance.Config) e
 		return p.sanitizeConfig(p.bootOptions.pd, cfg)
 	case "tikv":
 		return p.sanitizeConfig(p.bootOptions.tikv, cfg)
-	case "tidb":
+	case "he3db":
 		return p.sanitizeConfig(p.bootOptions.tidb, cfg)
 	case "tiflash":
 		return p.sanitizeConfig(p.bootOptions.tiflash, cfg)
@@ -552,7 +552,7 @@ func (p *Playground) WalkInstances(fn func(componentID string, ins instance.Inst
 	}
 
 	for _, ins := range p.tidbs {
-		err := fn("tidb", ins)
+		err := fn("he3db", ins)
 		if err != nil {
 			return err
 		}
@@ -623,7 +623,7 @@ func (p *Playground) addInstance(componentID string, cfg instance.Config) (ins i
 				pd.InitCluster(p.pds)
 			}
 		}
-	case "tidb":
+	case "he3db":
 		inst := instance.NewTiDBInstance(cfg.BinPath, dir, host, cfg.ConfigPath, id, p.pds, p.enableBinlog())
 		ins = inst
 		p.tidbs = append(p.tidbs, inst)
@@ -670,7 +670,7 @@ func (p *Playground) bootCluster(ctx context.Context, env *environment.Environme
 	}
 
 	if options.version == "" {
-		version, _, err := env.V1Repository().LatestStableVersion("tidb", false)
+		version, _, err := env.V1Repository().LatestStableVersion("he3db", false)
 		if err != nil {
 			return err
 		}
@@ -702,7 +702,7 @@ func (p *Playground) bootCluster(ctx context.Context, env *environment.Environme
 		{"pd", options.pd},
 		{"tikv", options.tikv},
 		{"pump", options.pump},
-		{"tidb", options.tidb},
+		{"he3db", options.tidb},
 		{"ticdc", options.ticdc},
 		{"drainer", options.drainer},
 		{"tiflash", options.tiflash},
@@ -789,7 +789,7 @@ func (p *Playground) bootCluster(ctx context.Context, env *environment.Environme
 	if len(p.tidbs) > 0 {
 		var wg sync.WaitGroup
 		var appendMutex sync.Mutex
-		bars := progress.NewMultiBar(color.YellowString("Waiting for tidb instances ready\n"))
+		bars := progress.NewMultiBar(color.YellowString("Waiting for he3db instances ready\n"))
 		for _, db := range p.tidbs {
 			wg.Add(1)
 			prefix := color.YellowString(db.Addr())
@@ -872,7 +872,7 @@ func (p *Playground) bootCluster(ctx context.Context, env *environment.Environme
 		fmt.Println(color.GreenString("CLUSTER START SUCCESSFULLY, Enjoy it ^-^"))
 		for _, dbAddr := range succ {
 			ss := strings.Split(dbAddr, ":")
-			fmt.Println(color.GreenString("To connect TiDB: mysql --host %s --port %s -u root", ss[0], ss[1]))
+			fmt.Println(color.GreenString("To connect He3DB: mysql --host %s --port %s -u root", ss[0], ss[1]))
 		}
 	}
 

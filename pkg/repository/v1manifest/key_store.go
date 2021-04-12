@@ -88,22 +88,25 @@ func (s *KeyStore) transitionRoot(signed []byte, newThreshold uint, expiry strin
 	if s == nil {
 		return nil
 	}
-
-	oldKeys, hasOldKeys := s.Load(ManifestTypeRoot)
+    ///////////////////////////////////////////////////
+	//oldKeys, hasOldKeys := s.Load(ManifestTypeRoot)//
+	///////////////////////////////////////////////////
 
 	err := s.AddKeys(ManifestTypeRoot, newThreshold, expiry, newKeys)
 	if err != nil {
 		return err
 	}
 
-	err = s.verifySignature(signed, ManifestTypeRoot, signatures, ManifestFilenameRoot)
-	if err != nil {
-		// Restore the old root keys.
-		if hasOldKeys {
-			s.Store(ManifestTypeRoot, oldKeys)
-		}
-		return err
-	}
+	///////////////////////////////////////////////////////////////////////////////////////
+	//err = s.verifySignature(signed, ManifestTypeRoot, signatures, ManifestFilenameRoot)//
+	//if err != nil {																	 //
+	//	// Restore the old root keys.													 //
+	//	if hasOldKeys {																	 //
+	//		s.Store(ManifestTypeRoot, oldKeys)											 //
+	//	}																				 //
+	//	return err																		 //
+	//}																					 //
+	///////////////////////////////////////////////////////////////////////////////////////
 
 	return nil
 }

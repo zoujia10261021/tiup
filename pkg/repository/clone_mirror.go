@@ -132,7 +132,7 @@ func CloneMirror(repo *V1Repository,
 		return errors.Trace(err)
 	}
 	// save owner key
-	if err := v1manifest.SaveKeyInfo(ownerkeyInfo, "pingcap", keyDir); err != nil {
+	if err := v1manifest.SaveKeyInfo(ownerkeyInfo, "suyan", keyDir); err != nil {
 		return errors.Trace(err)
 	}
 
@@ -140,8 +140,8 @@ func CloneMirror(repo *V1Repository,
 	if err != nil {
 		return errors.Trace(err)
 	}
-	index.Owners["pingcap"] = v1manifest.Owner{
-		Name: "PingCAP",
+	index.Owners["suyan"] = v1manifest.Owner{
+		Name: "Suyan",
 		Keys: map[string]*v1manifest.KeyInfo{
 			ownerkeyID: ownerkeyPub,
 		},
@@ -165,7 +165,7 @@ func CloneMirror(repo *V1Repository,
 			return err
 		}
 		index.Components[component.ID] = v1manifest.ComponentItem{
-			Owner: "pingcap",
+			Owner: "suyan",
 			URL:   fmt.Sprintf("/%s", fname),
 		}
 	}
@@ -418,7 +418,7 @@ func combineVersions(versions *[]string,
 	}
 
 	// Some components version binding to TiDB
-	coreSuites := set.NewStringSet("tidb", "tikv", "pd", "tiflash", "prometheus", "grafana", "ctl", "cdc")
+	coreSuites := set.NewStringSet("he3db", "tikv", "pd", "tiflash", "prometheus", "grafana", "ctl", "cdc")
 
 	for _, os := range oss {
 		for _, arch := range archs {
