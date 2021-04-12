@@ -631,25 +631,25 @@ func (r *V1Repository) fetchBase(url string, maxSize uint, f func(reader io.Read
 
 func checkHash(reader io.Reader, sha256 string) (io.Reader, error) {
 	buffer := new(bytes.Buffer)
-	/////////////////////////////////////
-	//_, err := io.Copy(buffer, reader)//
-	//if err != nil {				   //
-	//	return nil, errors.Trace(err)  //
-	//}								   //
-	/////////////////////////////////////
+
+	_, err := io.Copy(buffer, reader)
+	if err != nil {				   
+		return nil, errors.Trace(err)  
+	}								   
+
 
 	b := buffer.Bytes()
 	bufReader := bytes.NewReader(b)
 	///////////////////////////////////////////////////////////////
 	//if err = utils.CheckSHA256(bufReader, sha256); err != nil {//
 	//	return nil, errors.Trace(err)							 //
-	//}															 //
-    //															 //
-	//_, err = bufReader.Seek(0, io.SeekStart)					 //
-	//if err != nil {											 //
-	//	return nil, errors.Trace(err)							 //
-	//}															 //
-	///////////////////////////////////////////////////////////////
+	//}															
+    	///////////////////////////////////////////////////////////////
+	_, err = bufReader.Seek(0, io.SeekStart)
+	if err != nil {			
+		return nil, errors.Trace(err)							 
+	}															
+	
 
 	return bufReader, nil
 }
